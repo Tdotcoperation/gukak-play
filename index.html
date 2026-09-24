@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#11110f" />
+  <title>PUNGRYU Studio</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="brand">PUNGRYU <span>Studio</span></div>
+      <div class="tagline">한국 전통악기를 직접 연주하고, 코드로 작곡하세요.</div>
+    </div>
+    <nav>
+      <button class="nav-btn active" data-view="play">연주</button>
+      <button class="nav-btn" data-view="code">코드 연주</button>
+      <button class="nav-btn" data-view="guide">가이드</button>
+    </nav>
+  </header>
+  <main>
+    <section id="view-play" class="view active">
+      <div class="panel hero-panel">
+        <div>
+          <p class="eyebrow">LIVE INSTRUMENT</p>
+          <h1 id="instrumentName">가야금</h1>
+          <p class="muted" id="instrumentDesc">현을 클릭하거나 키보드 A–K로 연주할 수 있습니다.</p>
+        </div>
+        <div class="transport">
+          <button id="recordBtn" class="danger">● 녹음</button>
+          <button id="stopRecordBtn" disabled>■ 정지</button>
+          <button id="exportLiveBtn" disabled>WAV 내보내기</button>
+        </div>
+      </div>
+      <div class="workspace">
+        <aside class="instrument-list panel" id="instrumentList"></aside>
+        <section class="instrument-stage panel">
+          <div class="status-row">
+            <span id="engineStatus">오디오 엔진 준비됨</span>
+            <span id="sampleStatus">합성 폴백</span>
+          </div>
+          <div id="instrumentSurface" class="instrument-surface"></div>
+          <div class="hint">키보드 단축키는 입력창을 선택하지 않았을 때만 작동합니다.</div>
+        </section>
+      </div>
+      <section class="panel take-panel">
+        <div class="section-title">최근 녹음</div>
+        <div id="takeInfo" class="empty">아직 녹음된 연주가 없습니다.</div>
+      </section>
+    </section>
+    <section id="view-code" class="view">
+      <div class="code-layout">
+        <section class="panel editor-panel">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">PUNGRYU MUSIC CODE</p>
+              <h2>AI 연주 코드</h2>
+            </div>
+            <div class="transport">
+              <button id="exampleBtn">예제</button>
+              <button id="playCodeBtn" class="primary">▶ 연주</button>
+              <button id="stopCodeBtn">■ 정지</button>
+              <button id="exportCodeBtn">WAV 내보내기</button>
+            </div>
+          </div>
+          <textarea id="codeEditor" spellcheck="false" aria-label="PUNGRYU Music Code"></textarea>
+          <div id="codeMessage" class="message">코드를 입력한 뒤 연주를 눌러주세요.</div>
+        </section>
+        <aside class="panel mini-help">
+          <h3>빠른 문법</h3>
+          <pre>@tempo 108
+@time 4/4
+
+track gayageum {
+  C4 1/4 velocity=90
+  E4 1/4
+  G4 1/2
+}
+
+track janggu {
+  deong 1/4
+  deok 1/4
+  kung 1/2
+}</pre>
+          <p class="muted">지원 악기: gayageum, haegeum, daegeum, janggu, buk, danso</p>
+        </aside>
+      </div>
+    </section>
+    <section id="view-guide" class="view">
+      <div class="panel guide">
+        <p class="eyebrow">DOCUMENTATION</p>
+        <h2>AI / 개발자 가이드</h2>
+        <p>PUNGRYU Music Code는 사람이 읽기 쉽고 AI가 생성하기 쉬운 간단한 연주 언어입니다.</p>
+        <h3>1. 곡 설정</h3>
+        <pre>@title "봄바람"
+@tempo 112
+@time 4/4</pre>
+        <h3>2. 멜로디 악기</h3>
+        <pre>track gayageum {
+  C4 1/4 velocity=80
+  D4 1/4 velocity=90
+  E4 1/2 technique=nonghyeon
+  rest 1/4
+}</pre>
+        <h3>3. 타악기</h3>
+        <pre>track janggu {
+  deong 1/4 velocity=100
+  deok 1/4 velocity=75
+  kung 1/2 velocity=105
+}</pre>
+        <h3>4. AI에게 요청하기</h3>
+        <p>“PUNGRYU Music Code로 가야금·대금·장구를 사용한 20초 길이의 밝은 곡을 만들어줘. BPM 108, 4/4박자.”처럼 요청하면 됩니다.</p>
+        <h3>5. 샘플 파일</h3>
+        <p>각 악기 폴더의 <code>manifest.json</code>에 WAV를 등록하면 합성 폴백보다 실제 샘플을 우선 사용하도록 설계되어 있습니다.</p>
+        <a class="download-link" href="./docs/AI_GUIDE.md" download>AI_GUIDE.md 다운로드</a>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <span>PUNGRYU Studio 0.1</span>
+    <span>실제 K-SOUND 음원 사용 시 각 음원별 저작자·출처를 표시하세요.</span>
+  </footer>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
