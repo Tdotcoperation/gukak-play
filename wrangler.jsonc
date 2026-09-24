@@ -3,7 +3,7 @@
   "name": "gukak-play",
   "compatibility_date": "2026-09-25",
   "assets": {
-    "directory": ".",
+    "directory": "./public",
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "none"
   }
